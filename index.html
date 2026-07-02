@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Mình đi đâu nhỉ? 🌸</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+
+  <style>
+
+    :root {
+
+      --blush: #F2C4CE;
+
+      --rose: #E8899A;
+
+      --deep-rose: #C45C72;
+
+      --cream: #FDF6F0;
+
+      --warm-white: #FFFAF7;
+
+      --text: #4A2D38;
+
+      --text-light: #9B7A85;
+
+      --gold: #D4A853;
+
+      --white: #FFFFFF;
+
+      --gray-100: #E6EBED;
+
+    }
+
+ 
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+ 
+
+    body {
+
+      font-family: 'DM Sans', sans-serif;
+
+      background: linear-gradient(135deg, #fce4ec 0%, #fdf6f0 40%, #fce4ec 100%);
+
+      min-height: 100vh;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 32px 16px;
+
+      position: relative;
+
+      overflow-x: hidden;
+
+    }
+
+ 
+
+    body::before {
+
+      content: '';
+
+      position: fixed; inset: 0;
+
+      background:
+
+        radial-gradient(circle at 20% 20%, rgba(242,196,206,0.4) 0%, transparent 40%),
+
+        radial-gradient(circle at 80% 80%, rgba(232,137,154,0.25) 0%, transparent 40%);
+
+      pointer-events: none; z-index: 0;
+
+    }
+
+ 
+
+    /* ── Corner doodles ── */
+
+    .corner-doodle {
+
+      position: fixed; pointer-events: none; z-index: 0;
+
+      opacity: 0.08; font-size: 80px; user-select: none;
+
+    }
+
+    .corner-doodle.tl { top:10px; left:10px; transform:rotate(-20deg); }
+
+    .corner-doodle.tr { top:10px; right:10px; transform:rotate(20deg); }
+
+    .corner-doodle.bl { bottom:10px; left:10px; transform:rotate(15deg); }
+
+    .corner-doodle.br { bottom:10px; right:10px; transform:rotate(-15deg); }
+
+ 
+
+    /* ── Shin-chan side deco ── */
+
+    .shinchan-deco {
+
+      position: fixed; pointer-events: none; z-index: 0;
+
+      opacity: 0.10; font-size: 64px; user-select: none;
+
+      animation: shinFloat 6s ease-in-out infinite;
+
+    }
+
+    .shinchan-deco.left  { left:-10px; top:30%; animation-delay:0s; }
+
+    .shinchan-deco.right { right:-10px; top:55%; animation-delay:3s; font-size:56px; }
+
+ 
+
+    @keyframes shinFloat {
+
+      0%,100% { transform:translateY(0) rotate(-5deg); }
+
+      50%      { transform:translateY(-14px) rotate(5deg); }
+
+    }
+
+ 
+
+    /* ── Card ── */
+
+    .card {
+
+      position: relative; z-index: 1;
+
+      max-width: 620px; width: 100%;
+
+      background: var(--warm-white);
+
+      border-radius: 32px; overflow: hidden;
+
+      box-shadow:
+
+        0 4px 6px rgba(196,92,114,0.06),
+
+        0 20px 60px rgba(196,92,114,0.15),
+
+        0 0 0 1px rgba(242,196,206,0.5);
+
+      animation: cardIn 0.8s cubic-bezier(0.34,1.56,0.64,1) both;
+
+    }
+
+    @keyframes cardIn {
+
+      from { opacity:0; transform:translateY(40px) scale(0.95); }
+
+      to   { opacity:1; transform:translateY(0) scale(1); }
+
+    }
+
+ 
+
+    /* ── Header ── */
+
+    .card-header {
+
+      background: linear-gradient(160deg, #f8b4c0 0%, #e8899a 50%, #c45c72 100%);
+
+      padding: 48px 40px 64px;
+
+      text-align: center;
+
+      position: relative; overflow: hidden;
+
+    }
+
+    .card-header::before {
+
+      content: '';
+
+      position: absolute; inset: 0;
+
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+    }
+
+    .card-header::after {
+
+      content: '';
+
+      position: absolute; bottom:-2px; left:0; right:0;
+
+      height:60px; background:var(--warm-white);
+
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+
+    }
+
+ 
+
+    .header-shinchan {
+
+      position: absolute; bottom:18px; right:28px; z-index:2;
+
+      font-size:52px;
+
+      animation: shinWave 2s ease-in-out infinite;
+
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+
+    }
+
+    .header-shinchan-left {
+
+      position: absolute; bottom:18px; left:28px; z-index:2;
+
+      font-size:44px;
+
+      animation: shinWave 2.5s ease-in-out infinite;
+
+      animation-delay:0.5s;
+
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+
+    }
+
+    @keyframes shinWave {
+
+      0%,100% { transform:rotate(-8deg) translateY(0); }
+
+      50%      { transform:rotate(8deg) translateY(-6px); }
+
+    }
+
+ 
+
+    .header-emoji {
+
+      font-size:52px; display:block; margin-bottom:16px;
+
+      position:relative; z-index:1;
+
+      animation: bounce 2s ease-in-out infinite;
+
+    }
+
+    @keyframes bounce {
+
+      0%,100% { transform:translateY(0) rotate(-5deg); }
+
+      50%      { transform:translateY(-8px) rotate(5deg); }
+
+    }
+
+    .header-script {
+
+      font-family:'Dancing Script',cursive; font-size:18px;
+
+      color:rgba(255,255,255,0.85); letter-spacing:0.05em;
+
+      margin-bottom:10px; position:relative; z-index:1;
+
+    }
+
+    .header-title {
+
+      font-family:'Playfair Display',serif;
+
+      font-size:clamp(26px,5vw,36px); font-weight:700;
+
+      color:#fff; line-height:1.2;
+
+      position:relative; z-index:1;
+
+      text-shadow:0 2px 12px rgba(196,92,114,0.3);
+
+    }
+
+    .header-date {
+
+      display:inline-flex; align-items:center; gap:8px;
+
+      margin-top:16px;
+
+      background:rgba(255,255,255,0.2);
+
+      backdrop-filter:blur(8px);
+
+      border:1px solid rgba(255,255,255,0.35);
+
+      border-radius:999px; padding:6px 20px;
+
+      font-size:13px; font-weight:500; color:#fff;
+
+      letter-spacing:0.04em; position:relative; z-index:1;
+
+    }
+
+ 
+
+    /* ── Body ── */
+
+    .card-body { padding: 8px 40px 40px; }
+
+ 
+
+    /* ── Thank you ── */
+
+    .thankyou-section {
+
+      text-align:center; padding:32px 0 28px;
+
+      border-bottom:1px dashed rgba(232,137,154,0.3);
+
+      margin-bottom:32px;
+
+      position:relative;
+
+      animation: fadeUp 0.6s 0.3s both;
+
+    }
+
+    .thankyou-section::before {
+
+      content:'🌻'; position:absolute; top:8px; left:0;
+
+      font-size:22px; opacity:0.35;
+
+      animation:spinSlow 8s linear infinite;
+
+    }
+
+    .thankyou-section::after {
+
+      content:'⭐'; position:absolute; top:8px; right:0;
+
+      font-size:20px; opacity:0.35;
+
+      animation:spinSlow 6s linear infinite reverse;
+
+    }
+
+    @keyframes spinSlow { to { transform:rotate(360deg); } }
+
+    @keyframes fadeUp {
+
+      from { opacity:0; transform:translateY(16px); }
+
+      to   { opacity:1; transform:translateY(0); }
+
+    }
+
+ 
+
+    .thankyou-label {
+
+      font-family:'Dancing Script',cursive; font-size:15px;
+
+      color:var(--rose); letter-spacing:0.06em; margin-bottom:10px;
+
+    }
+
+    .thankyou-text {
+
+      font-family:'Playfair Display',serif; font-size:19px;
+
+      color:var(--text); line-height:1.65; font-style:italic;
+
+    }
+
+    .thankyou-text span { color:var(--deep-rose); font-style:normal; font-weight:700; }
+
+    .thankyou-sub {
+
+      margin-top:14px; font-size:14px;
+
+      color:var(--text-light); line-height:1.8;
+
+    }
+
+    .dalat-badge {
+
+      display:inline-flex; align-items:center; gap:6px;
+
+      background:linear-gradient(135deg,#e8f5e9,#f1f8e9);
+
+      border:1px solid rgba(76,175,80,0.25);
+
+      border-radius:999px; padding:4px 14px;
+
+      font-size:12px; color:#388e3c; font-weight:500; margin-top:10px;
+
+    }
+
+ 
+
+    /* ── Section heading ── */
+
+    .section-heading {
+
+      display:flex; align-items:center; gap:12px;
+
+      margin-bottom:16px;
+
+    }
+
+    .section-heading-icon {
+
+      width:38px; height:38px;
+
+      background:linear-gradient(135deg,var(--blush),var(--rose));
+
+      border-radius:10px;
+
+      display:flex; align-items:center; justify-content:center;
+
+      font-size:18px; flex-shrink:0;
+
+      box-shadow:0 4px 12px rgba(232,137,154,0.3);
+
+    }
+
+    .section-heading-text {
+
+      font-family:'Playfair Display',serif;
+
+      font-size:18px; font-weight:700; color:var(--text);
+
+    }
+
+    .section-heading-text span {
+
+      font-family:'DM Sans',sans-serif; font-size:12px;
+
+      font-weight:400; color:var(--text-light);
+
+      display:block; margin-top:1px;
+
+    }
+
+ 
+
+    /* ── Activity block ── */
+
+    .activity-block { margin-bottom:28px; }
+
+ 
+
+    /* ── Options ── */
+
+    .options-grid { display:grid; gap:10px; }
+
+ 
+
+    .option-row {
+
+      background:var(--cream);
+
+      border:1.5px solid rgba(232,137,154,0.2);
+
+      border-radius:16px; padding:14px 18px;
+
+      display:flex; align-items:center; gap:14px;
+
+    }
+
+    .option-emoji { font-size:26px; flex-shrink:0; }
+
+    .option-content { flex:1; }
+
+    .option-name {
+
+      font-family:'Playfair Display',serif;
+
+      font-size:14px; font-weight:700;
+
+      color:var(--text); margin-bottom:2px;
+
+    }
+
+    .option-desc { font-size:12px; color:var(--text-light); line-height:1.5; }
+
+ 
+
+    /* Checkbox styling */
+
+    .option-check {
+
+      width:20px; height:20px; flex-shrink:0;
+
+      accent-color:var(--deep-rose);
+
+      cursor:pointer;
+
+      transform:scale(1.2);
+
+    }
+
+ 
+
+    /* Film rows */
+
+    .option-row.film-row {
+
+      background:linear-gradient(135deg,#1a1a2e,#16213e);
+
+      border-color:rgba(100,120,200,0.3);
+
+    }
+
+    .option-row.film-row .option-name { color:#fff; }
+
+    .option-row.film-row .option-desc { color:rgba(255,255,255,0.5); }
+
+    .film-time {
+
+      display:inline-flex; gap:6px; margin-top:4px; flex-wrap:wrap;
+
+    }
+
+    .film-time-badge {
+
+      background:rgba(121,134,203,0.2);
+
+      border:1px solid rgba(121,134,203,0.35);
+
+      color:#9fa8da; font-size:10px;
+
+      padding:2px 8px; border-radius:999px; font-weight:500;
+
+    }
+
+ 
+
+    /* ── Divider ── */
+
+    .divider {
+
+      display:flex; align-items:center; gap:12px;
+
+      margin:24px 0;
+
+    }
+
+    .divider-line { flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(232,137,154,0.3),transparent); }
+
+    .divider-icon { font-size:16px; }
+
+ 
+
+    /* ── Closing note ── */
+
+    .closing-note {
+
+      background:linear-gradient(135deg,#fce4ec,#fdf0f3);
+
+      border:1.5px dashed rgba(232,137,154,0.4);
+
+      border-radius:16px; padding:18px 22px;
+
+      margin-top:24px; margin-bottom:24px;
+
+      font-size:14px; color:var(--text);
+
+      line-height:1.8; text-align:center;
+
+    }
+
+    .closing-note strong { color:var(--deep-rose); }
+
+ 
+
+    /* ── Submit area ── */
+
+    .submit-wrap { text-align:center; margin-top:8px; }
+
+    .submit-label {
+
+      font-size:13px; color:var(--text-light);
+
+      margin-bottom:10px; line-height:1.6;
+
+    }
+
+    .submit-email-badge {
+
+      display:inline-flex; align-items:center; gap:6px;
+
+      background:var(--cream);
+
+      border:1px solid rgba(232,137,154,0.3);
+
+      border-radius:999px; padding:5px 16px;
+
+      font-size:12px; color:var(--deep-rose);
+
+      font-weight:500; margin-bottom:16px;
+
+      letter-spacing:0.02em;
+
+    }
+
+ 
+
+    /* mailto link styled as button */
+
+    .submit-btn {
+
+      display:inline-flex; align-items:center; gap:10px;
+
+      background:linear-gradient(135deg,var(--rose) 0%,var(--deep-rose) 100%);
+
+      color:white; font-family:'DM Sans',sans-serif;
+
+      font-size:15px; font-weight:500;
+
+      padding:14px 32px; border-radius:999px;
+
+      text-decoration:none;
+
+      box-shadow:0 8px 24px rgba(196,92,114,0.35);
+
+      transition:all 0.3s ease;
+
+      letter-spacing:0.02em;
+
+    }
+
+    .submit-btn:hover {
+
+      transform:translateY(-3px) scale(1.04);
+
+      box-shadow:0 14px 32px rgba(196,92,114,0.45);
+
+      color:white;
+
+    }
+
+    .submit-btn-icon { font-size:18px; }
+
+ 
+
+    .submit-note {
+
+      margin-top:14px; font-size:12px;
+
+      color:var(--text-light); line-height:1.6;
+
+    }
+
+    .submit-note strong { color:var(--deep-rose); }
+
+ 
+
+    /* ── Footer ── */
+
+    .card-footer {
+
+      background:linear-gradient(135deg,#1a1a2e 0%,#2d1b22 100%);
+
+      padding:28px 40px; text-align:center;
+
+      position:relative; overflow:hidden;
+
+    }
+
+    .card-footer::before {
+
+      content:''; position:absolute; inset:0;
+
+      background:radial-gradient(ellipse at 50% 0%,rgba(232,137,154,0.15) 0%,transparent 60%);
+
+      pointer-events:none;
+
+    }
+
+    .footer-shin {
+
+      font-size:36px; display:block;
+
+      margin-bottom:12px; position:relative; z-index:1;
+
+      animation:shinWave 3s ease-in-out infinite;
+
+    }
+
+    .footer-script {
+
+      font-family:'Playfair Display',serif;
+
+      font-size:18px; font-weight:700; font-style:italic;
+
+      color:#fff; margin-bottom:6px;
+
+      position:relative; z-index:1; line-height:1.5;
+
+    }
+
+    .footer-script span { color:var(--blush); }
+
+    .footer-sub {
+
+      font-size:11px; color:rgba(255,255,255,0.35);
+
+      letter-spacing:0.04em; position:relative; z-index:1;
+
+    }
+
+ 
+
+    /* ── Responsive ── */
+
+    @media (max-width:480px) {
+
+      .card-body { padding:8px 20px 28px; }
+
+      .card-header { padding:36px 20px 52px; }
+
+      .card-footer { padding:24px 20px; }
+
+      .header-shinchan { font-size:38px; right:12px; }
+
+      .header-shinchan-left { font-size:32px; left:12px; }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+ 
+
+  <!-- Corner doodles -->
+
+  <div class="corner-doodle tl">🌸</div>
+
+  <div class="corner-doodle tr">⭐</div>
+
+  <div class="corner-doodle bl">🌷</div>
+
+  <div class="corner-doodle br">💕</div>
+
+ 
+
+  <!-- Shin-chan side deco -->
+
+  <div class="shinchan-deco left">🧒</div>
+
+  <div class="shinchan-deco right">🌻</div>
+
+ 
+
+  <div class="card">
+
+ 
+
+    <!-- HEADER -->
+
+    <div class="card-header">
+
+      <div class="header-shinchan-left">🧒</div>
+
+      <div class="header-shinchan">🌻</div>
+
+      <span class="header-emoji">💌</span>
+
+      <div class="header-script">một câu hỏi nhỏ thôi...</div>
+
+      <div class="header-title">Thứ 7 này mình<br/>đi đâu nhỉ?  🌸</div>
+
+      <div class="header-date">📅 Thứ Bảy, 4 tháng 7 năm 2026</div>
+
+    </div>
+
+ 
+
+    <!-- BODY -->
+
+    <div class="card-body">
+
+ 
+
+      <!-- Thank you -->
+
+      <div class="thankyou-section">
+
+        <div class="thankyou-label">✨ trước tiên là...</div>
+
+        <div class="thankyou-text">
+
+          Cảm ơn em đã đồng ý đi date<br/>
+
+          cùng anh vào <span>Thứ 7 này</span> nhé!  🥹
+
+        </div>
+
+        <div class="thankyou-sub">
+
+          Đây là lần đầu tiên anh đi date với người Hà Nội,<br/>
+
+          nên mong em nhẹ nhàng hơn với người Đà Lạt là anh nhé.  🌿<br/><br/>
+
+          Anh vui lắm đó 💗 Giờ thì mình cùng chọn xem<br/>
+
+          hôm đó sẽ làm gì nhé!
+
+        </div>
+
+        <div style="margin-top:12px;">
+
+          <span class="dalat-badge">🌿 Người Đà Lạt lần đầu lên Hà Nội</span>
+
+        </div>
+
+      </div>
+
+ 
+
+      <!-- ACTIVITY 1: DINNER -->
+
+      <div class="activity-block">
+
+        <div class="section-heading">
+
+          <div class="section-heading-icon">🍽️</div>
+
+          <div class="section-heading-text">
+
+            Hoạt động 1 — Dinner
+
+            <span>Tối đó mình ăn gì nhỉ? Em tick vào lựa chọn của em nhé!</span>
+
+          </div>
+
+        </div>
+
+        <div class="options-grid">
+
+          <label class="option-row">
+
+            <span class="option-emoji">🥩</span>
+
+            <div class="option-content">
+
+              <div class="option-name">Đồ Tây</div>
+
+              <div class="option-desc">Steak, pasta, pizza... kiểu Âu sang chảnh  ✨</div>
+
+            </div>
+
+            <input type="checkbox" class="option-check" name="dinner" value="Do Tay" />
+
+          </label>
+
+          <label class="option-row">
+
+            <span class="option-emoji">🍜</span>
+
+            <div class="option-content">
+
+              <div class="option-name">Đồ Việt</div>
+
+              <div class="option-desc">Bún bò, phở, lẩu... ấm áp và quen thuộc  🇻🇳</div>
+
+            </div>
+
+            <input type="checkbox" class="option-check" name="dinner" value="Do Viet" />
+
+          </label>
+
+          <label class="option-row">
+
+            <span class="option-emoji">🥟</span>
+
+            <div class="option-content">
+
+              <div class="option-name">Đồ Hoa</div>
+
+              <div class="option-desc">Dimsum, lẩu Tứ Xuyên, mì xào... đậm đà hương vị 🏮</div>
+
+            </div>
+
+            <input type="checkbox" class="option-check" name="dinner" value="Do Hoa" />
+
+          </label>
+
+          <label class="option-row">
+
+            <span class="option-emoji">🍱</span>
+
+            <div class="option-content">
+
+              <div class="option-name">Đồ Hàn</div>
+
+              <div class="option-desc">BBQ Hàn, tteokbokki, kimchi jjigae... chuẩn K-vibe 🇰🇷</div>
+
+            </div>
+
+            <input type="checkbox" class="option-check" name="dinner" value="Do Han" />
+
+          </label>
+
+          <label class="option-row">
+
+            <span class="option-emoji">🍣</span>
+
+            <div class="option-content">
+
+              <div class="option-name">Đồ Nhật</div>
+
+              <div class="option-desc">Sushi, ramen, tempura... tinh tế và ngon miệng 🇯🇵</div>
+
+            </div>
+
+            <input type="checkbox" class="option-check" name="dinner" value="Do Nhat" />
+
+          </label>
+
+        </div>
+
+      </div>
+
+ 
+
+      <div class="divider">
+
+        <div class="divider-line"></div>
+
+        <span class="divider-icon">🌸</span>
+
+        <div class="divider-line"></div>
+
+      </div>
+
+ 
+
+      <!-- ACTIVITY 2: COFFEE -->
+
+      <div class="activity-block">
+
+        <div class="section-heading">
+
+          <div class="section-heading-icon">☕</div>
+
+          <div class="section-heading-text">
+
+            Hoạt động 2 — Coffee & Chill
+
+            <span>Sau đó mình ngồi đâu tâm sự nhỉ?</span>
+
+          </div>
+
+        </div>
+
+        <div class="options-grid">
+
+          <label class="option-row">
+
+            <span class="option-emoji">🌆</span>
+
+            <div class="option-content">
+
+              <div class="option-name">Rooftop Cafe</div>
+
+              <div class="option-desc">View thành phố lung linh, gió mát, trời đêm đẹp 🌃</div>
+
+            </div>
+
+            <input type="checkbox" class="option-check" name="coffee" value="Rooftop Cafe" />
+
+          </label>
+
+          <label class="option-row">
+
+            <span class="option-emoji">🌊</span>
+
+            <div class="option-content">
+
+              <div class="option-name">Hồ Tây Cafe</div>
+
+              <div class="option-desc">Ngồi bên hồ, gió hồ mát rượi, lãng mạn lắm đó 🌙</div>
+
+            </div>
+
+            <input type="checkbox" class="option-check" name="coffee" value="Ho Tay Cafe" />
+
+          </label>
+
+          <label class="option-row">
+
+            <span class="option-emoji">☕</span>
+
+            <div class="option-content">
+
+              <div class="option-name">Starbucks Hanoi Centre</div>
+
+              <div class="option-desc">Quen thuộc, thoải mái, ngồi chill cùng nhau thật dễ chịu 🍵</div>
+
+            </div>
+
+            <input type="checkbox" class="option-check" name="coffee" value="Starbucks Hanoi Centre" />
+
+          </label>
+
+        </div>
+
+      </div>
+
+ 
+
+      <div class="divider">
+
+        <div class="divider-line"></div>
+
+        <span class="divider-icon">🎬</span>
+
+        <div class="divider-line"></div>
+
+      </div>
+
+ 
+
+      <!-- ACTIVITY 3: FILM -->
+
+      <div class="activity-block">
+
+        <div class="section-heading">
+
+          <div class="section-heading-icon">🎬</div>
+
+          <div class="section-heading-text">
+
+            Hoạt động 3 — Xem Phim (nếu em muốn!)
+
+            <span>Nếu em không thích option 2 thì mình đi xem film nhé ^^ Anh đã xem lịch chiếu rồi!</span>
+
+          </div>
+
+        </div>
+
+        <div class="options-grid">
+
+          <label class="option-row film-row">
+
+            <span class="option-emoji">🤪</span>
+
+            <div class="option-content">
+
+              <div class="option-name">Minions & Quái Vật</div>
+
+              <div class="film-time">
+
+                <span class="film-time-badge">🕗 20:15</span>
+
+                <span class="film-time-badge">🕙 22:00</span>
+
+              </div>
+
+            </div>
+
+            <input type="checkbox" class="option-check" name="film" value="Minions & Quai Vat" />
+
+          </label>
+
+          <label class="option-row film-row">
+
+            <span class="option-emoji">😱</span>
+
+            <div class="option-content">
+
+              <div class="option-name">Ám Ảnh (Obsessions)</div>
+
+              <div class="film-time">
+
+                <span class="film-time-badge">🕗 20:00</span>
+
+                <span class="film-time-badge">🕙 22:15</span>
+
+              </div>
+
+            </div>
+
+            <input type="checkbox" class="option-check" name="film" value="Am Anh (Obsessions)" />
+
+          </label>
+
+          <label class="option-row film-row" style="opacity:0.65; border-style:dashed;">
+
+            <span class="option-emoji">🙅</span>
+
+            <div class="option-content">
+
+              <div class="option-name">Không xem phim</div>
+
+              <div class="option-desc" style="color:rgba(255,255,255,0.4);">Thôi mình làm gì khác nhé!</div>
+
+            </div>
+
+            <input type="checkbox" class="option-check" name="film" value="Khong xem phim" />
+
+          </label>
+
+        </div>
+
+      </div>
+
+ 
+
+      <!-- Closing note -->
+
+      <div class="closing-note">
+
+        💬 <strong>Anh muốn nói thêm một điều nhỏ:</strong><br/>
+
+        Nếu anh có làm gì mà em cảm thấy không thoải mái,<br/>
+
+        thì em đừng ngại mà nói anh nhé —<br/>
+
+        <strong>anh sẽ lắng nghe và tiếp thu</strong>  🌿
+
+      </div>
+
+ 
+
+      <!-- Submit -->
+
+      <div class="submit-wrap">
+
+        <div class="submit-label">
+
+          Tick vào lựa chọn của em ở trên, rồi bấm nút bên dưới nhé!  💌<br/>
+
+          App email sẽ tự mở với nội dung điền sẵn — em chỉ cần bấm <strong>Send</strong> là xong!
+
+        </div>
+
+        <div style="margin-bottom:14px;">
+
+          <span class="submit-email-badge">📧 buivthienan@gmail.com</span>
+
+        </div>
+
+        <a
+
+          class="submit-btn"
+
+          href="mailto:buivthienan@gmail.com?subject=Em%20%C4%91%C3%A3%20ch%E1%BB%8Dn%20xong%20r%E1%BB%93i%20anh%20%C6%A1i!%20%F0%9F%92%95&body=Anh%20%C6%A1i%20em%20ch%E1%BB%8Dn%20r%E1%BB%93i%20n%C3%A8!%20%F0%9F%8C%B8%0A%0A%F0%9F%8D%BD%EF%B8%8F%20Dinner%3A%20%5BEm%20%C4%91i%E1%BB%81n%20v%C3%A0o%20%C4%91%C3%A2y%20nh%C3%A9%5D%0A%E2%98%95%20Coffee%20%26%20Chill%3A%20%5BEm%20%C4%91i%E1%BB%81n%20v%C3%A0o%20%C4%91%C3%A2y%20nh%C3%A9%5D%0A%F0%9F%8E%AC%20Xem%20ph%C3%ACm%3A%20%5BEm%20%C4%91i%E1%BB%81n%20v%C3%A0o%20%C4%91%C3%A2y%20nh%C3%A9%5D%0A%0ATh%E1%BB%A9%207%20h%E1%BA%B9n%20g%E1%BA%B7p%20anh%20nh%C3%A9!%20%F0%9F%92%95%0A%E2%80%94%20Nguy%E1%BB%85n%20C%C6%B0%E1%BB%9Dng%20Th%E1%BB%8Bnh"
+
+        >
+
+          <span class="submit-btn-icon">💌</span>
+
+          Chọn option và gửi qua email cho anh nhé!
+
+        </a>
+
+        <div class="submit-note">
+
+          📝 <strong>Hướng dẫn:</strong> Sau khi app email mở, em điền lựa chọn của mình vào phần <strong>[Em điền vào đây nhé]</strong> rồi bấm Send nhé!
+
+        </div>
+
+      </div>
+
+ 
+
+    </div>
+
+ 
+
+    <!-- FOOTER -->
+
+    <div class="card-footer">
+
+      <span class="footer-shin">🧒💕</span>
+
+      <div class="footer-script">
+
+        Are you going on a date with me,<br/>
+
+        <span>Nguyễn Cường Thịnh?</span>
+
+      </div>
+
+      <div class="footer-sub">Thứ Bảy · 04/07/2026 · Hà Nội  🌸</div>
+
+    </div>
+
+ 
+
+  </div>
+
+ 
+
+</body>
+
+</html>
+
